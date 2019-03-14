@@ -22,7 +22,11 @@ if (!Array.prototype.flat) {
 				return result.concat(stack);
 			},
 			writable: true
-		},
+		}
+  });
+}
+if (!Array.prototype.flatMap) {
+  Object.defineProperties(Array.prototype, {
 		flatMap: {
 			configurable: true,
 			value: function flatMap(callback) {
