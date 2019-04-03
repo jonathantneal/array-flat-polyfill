@@ -1,8 +1,13 @@
 export function flat(depth = 1) {
 	return this.reduce(
-		(acc, val) => Array.isArray(val)
-			? acc.concat(val.flat(depth - 1))
-			: acc.concat(val),
+		(acc, val) => {
+			if (depth >= 1 && Array.isArray(val)) {
+				acc.push(...flat.call(val, depth - 1))
+			} else {
+				acc.push(val);
+			}
+			return acc;
+		},
 		[]
 	);
 }
