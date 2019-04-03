@@ -1,5 +1,5 @@
 export function flat(depth = 1) {
-	return this.reduce(
+	return Array.prototype.reduce.call(this,
 		(acc, val) => {
 			if (depth >= 1 && Array.isArray(val)) {
 				acc.push(...flat.call(val, depth - 1))
