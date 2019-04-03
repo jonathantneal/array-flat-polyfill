@@ -1,3 +1,3 @@
 export function flatMap(callback, thisArg) {
-	return this.map(callback, thisArg).flat();
+	return Array.prototype.map.apply(this, arguments).flat();
 }
