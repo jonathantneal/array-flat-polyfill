@@ -5,4 +5,5 @@ test("polyfill", () => {
 	expect([].flatMap).toBeUndefined();
 	require("../src/index");
 	expect([].flat).toBeDefined();
+	expect([].flatMap).toBeDefined();
 });
