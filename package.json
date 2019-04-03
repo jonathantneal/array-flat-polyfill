@@ -16,7 +16,8 @@
   "scripts": {
     "build": "rollup --config --silent",
     "prepublish": "npm run build",
-    "test": "eslint src/*.js --cache --ignore-path .gitignore --quiet"
+    "lint": "eslint src/*.js --cache --ignore-path .gitignore --quiet",
+    "test": "jest && npm run lint"
   },
   "engines": {
     "node": ">=6.0.0"
@@ -25,8 +26,10 @@
     "@babel/core": "^7.1.6",
     "@babel/preset-env": "^7.1.6",
     "babel-eslint": "^10.0.1",
+    "babel-jest": "^24.7.0",
     "eslint": "^5.6.0",
     "eslint-config-dev": "^2.0.0",
+    "jest": "^24.7.0",
     "rollup": "^0.67.3",
     "rollup-plugin-babel": "^4.0.3",
     "rollup-plugin-terser": "^3.0.0"
@@ -35,7 +38,9 @@
     "extends": "dev",
     "parser": "babel-eslint",
     "rules": {
-      "no-unused-vars": [0]
+      "no-unused-vars": [
+        0
+      ]
     }
   },
   "keywords": [
@@ -45,5 +50,6 @@
     "flatMap",
     "concat",
     "flatten"
-  ]
+  ],
+  "dependencies": {}
 }
