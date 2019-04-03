@@ -1,3 +1,5 @@
+import { flat } from "./flat";
+
 export function flatMap(callback) {
-	return Array.prototype.map.apply(this, arguments).flat();
+	return flat.call(Array.prototype.map.apply(this, arguments));
 }
