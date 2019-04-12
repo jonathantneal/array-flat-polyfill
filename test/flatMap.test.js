@@ -1,18 +1,29 @@
-import { flatMap } from "../src/flatMap";
+import flat from '../src/flat';
+import flatMap from '../src/flatMap';
 
-test("flatMap() examples", () => {
+if (!Array.prototype.flat) {
+	Object.defineProperties(Array.prototype, {
+		flat: {
+			configurable: true,
+			value: flat,
+			writable: true
+		}
+	});
+}
+
+test('flatMap() examples', () => {
 	expect(flatMap.call([1, 2, 3, 4], x => [x * 2])).toEqual([2, 4, 6, 8]);
 });
 
-test("only one level is flattened", () => {
+test('only one level is flattened', () => {
 	expect(flatMap.call([1, 2, 3, 4], x => [[x * 2]])).toEqual([[2], [4], [6], [8]]);
 });
 
-test("generate a list of words from a list of sentences", () => {
-	expect(flatMap.call(["it's Sunny in", "", "California"], x => x.split(" "))).toEqual(["it's","Sunny","in", "", "California"]);
+test('generate a list of words from a list of sentences', () => {
+	expect(flatMap.call(['it\'s Sunny in', '', 'California'], x => x.split(' '))).toEqual(['it\'s','Sunny','in', '', 'California']);
 });
 
-test("remove all the negative numbers and split the odd numbers into an even number and a 1", () => {
+test('remove all the negative numbers and split the odd numbers into an even number and a 1', () => {
 	const arr = [5, 4, -3, 20, 17, -33, -4, 18];
 	const map = n => n < 0
 		? []

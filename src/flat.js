@@ -1,13 +1,13 @@
-export function flat(depth = 1) {
-	return Array.prototype.reduce.call(this,
-		(acc, val) => {
-			if (depth >= 1 && Array.isArray(val)) {
-				acc.push(...flat.call(val, depth - 1))
-			} else {
-				acc.push(val);
-			}
-			return acc;
-		},
-		[]
-	);
+export default function flat () {
+	var depth = isNaN(arguments[0]) ? 1 : Number(arguments[0]);
+
+	return depth ? Array.prototype.reduce.call(this, function (acc, cur) {
+		if (Array.isArray(cur)) {
+			acc.push.apply(acc, flat.call(cur, depth - 1));
+		} else {
+			acc.push(cur);
+		}
+
+		return acc;
+	}, []) : Array.prototype.slice.call(this);
 }

@@ -25,7 +25,8 @@ flattens the result into a new array.
 [1, 2, 3, 4].flatMap(x => [x * 2]); // [2, 4, 6, 8]
 ```
 
-The script is 273 bytes when minified and gzipped.
+The script is 261 bytes when minified and gzipped. It works in all browsers,
+going as far back as Internet Explorer 9.
 
 ## Usage
 

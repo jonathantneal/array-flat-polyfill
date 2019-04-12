@@ -2,26 +2,23 @@ import babel from 'rollup-plugin-babel';
 import { terser } from 'rollup-plugin-terser';
 
 export default {
-	input: 'src/index.js',
-	output: { file: 'index.js', format: 'cjs' },
+	input: 'src/polyfill.js',
+	output: [
+		{ file: 'index.js', format: 'cjs', strict: false },
+		{ file: 'index.mjs', format: 'esm', strict: false }
+	],
 	plugins: [
-		babel({
-			presets: [ ['@babel/env', { targets: 'ie >= 9' }] ]
-		}),
+		babel(),
 		terser(),
 		trimContentForBrowser()
 	]
 };
 
-function trimContentForBrowser() {
+function trimContentForBrowser () {
 	return {
 		name: 'trim-content-for-browser',
-		renderChunk(code) {
-			const updatedCode = code
-				.replace(/^\s*"use strict";\s*/, '')
-				.replace(/;\s*$/, '');
-
-			return updatedCode;
+		renderChunk (code) {
+			return code.replace(/;\s*$/, '');
 		}
 	};
 }
